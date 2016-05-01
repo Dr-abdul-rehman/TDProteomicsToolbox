@@ -1,0 +1,18 @@
+Output File Format: FASTA
+Thrash Paramters: None
+Database Selected: ubiquitin_db.fasta
+Protein Mass (Da): 0
+Filter DB for intact Protein Mass: No
+Tune Whole Protein Molecular Weight: No
+Fragmentation Type Selected: ECD
+Molecular Weight Tolerance: 100
+Peptide Tolerance: 0.0001
+PTM Tolerance: 0.5
+Molecular Weight Tolerance Unit: Da
+Peptide Tolerance Unit: Da
+Minimum Length of Sequence Tag: 3
+Tolerance For Each Hop: 0.1
+Tolerance for Whole EST: 0.45
+
+
+
