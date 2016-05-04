@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           LUMSProT: A MATLAB Toolbox for Top-down Proteomics     %
+%                            Version 1.0.0                         %
+%        Copyright (c) Biomedical Informatics Research Laboratory, %
+%          Lahore University of Management Sciences Lahore (LUMS), %
+%                           Pakistan.                              %
+%                    (http://birl.lums.edu.pk) 	                   %
+%                     (safee.ullah@gmail.com)                      %
+%                    Last Modified on: 4-May-2016                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [Proteins_Insilico_Spectra] = Updated_ParseDatabase(Protein_ExperimentalMW,MWTolerance,Tags_ladder,Candidate_ProteinsList,PTM_tol,fixed_modifications,variable_modifications )
 %data = strcat(data1,data);
 %'C:\Users\Hira\Desktop\Summer 2014\Toolbox\uniprot_sprot.fasta';
