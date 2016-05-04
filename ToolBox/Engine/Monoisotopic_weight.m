@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           LUMSProT: A MATLAB Toolbox for Top-down Proteomics     %
+%                            Version 1.0.0                         %
+%        Copyright (c) Biomedical Informatics Research Laboratory, %
+%          Lahore University of Management Sciences Lahore (LUMS), %
+%                           Pakistan.                              %
+%                    (http://birl.lums.edu.pk) 	                   %
+%                     (safee.ullah@gmail.com)                      %
+%                    Last Modified on: 4-May-2016                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [AA_monoisitopicMass]=Monoisotopic_weight
 AA_monoisitopicMass={
     {'Gly','G',57.02146,57.0519};{'Ala','A',71.03711,71.0788}; %monoisotopic and average mass of amino acids
