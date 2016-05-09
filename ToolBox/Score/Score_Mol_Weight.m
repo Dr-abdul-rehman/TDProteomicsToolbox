@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           LUMSProT: A MATLAB Toolbox for Top-down Proteomics     %
+%                            Version 1.0.0                         %
+%        Copyright (c) Biomedical Informatics Research Laboratory, %
+%          Lahore University of Management Sciences Lahore (LUMS), %
+%                           Pakistan.                              %
+%                    (http://birl.lums.edu.pk) 	                   %
+%                     (safee.ullah@gmail.com)                      %
+%                    Last Modified on: 4-May-2016                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [Candidate_ProteinsList_MW_score]=Score_Mol_Weight(Candidate_ProteinsList,Prot_Intact_MW)
  for index=1:length(Candidate_ProteinsList)
         Candidate_ProteinsList_MW_score{index}{1}=Candidate_ProteinsList{index}{1};% store protein's name
