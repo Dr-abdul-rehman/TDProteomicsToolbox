@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           LUMSProT: A MATLAB Toolbox for Top-down Proteomics     %
+%                            Version 1.0.0                         %
+%        Copyright (c) Biomedical Informatics Research Laboratory, %
+%          Lahore University of Management Sciences Lahore (LUMS), %
+%                           Pakistan.                              %
+%                    (http://birl.lums.edu.pk) 	                   %
+%                     (safee.ullah@gmail.com)                      %
+%                    Last Modified on: 4-May-2016                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function varargout = Detail_view(varargin)
 % DETAIL_VIEW MATLAB code for Detail_view.fig
 %      DETAIL_VIEW, by itself, creates a new DETAIL_VIEW or raises the existing
