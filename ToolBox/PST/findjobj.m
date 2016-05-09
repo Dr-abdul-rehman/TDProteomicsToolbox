@@ -1,3 +1,13 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           LUMSProT: A MATLAB Toolbox for Top-down Proteomics     %
+%                            Version 1.0.0                         %
+%        Copyright (c) Biomedical Informatics Research Laboratory, %
+%          Lahore University of Management Sciences Lahore (LUMS), %
+%                           Pakistan.                              %
+%                    (http://birl.lums.edu.pk) 	                   %
+%                     (safee.ullah@gmail.com)                      %
+%                    Last Modified on: 4-May-2016                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [handles,levels,parentIdx,listing] = findjobj(container,varargin) %#ok<*CTCH,*ASGLU,*MSNU,*NASGU>
 %findjobj Find java objects contained within a specified java container or Matlab GUI handle
 %
