@@ -2188,7 +2188,8 @@ function Files = Filtering_Batch_File_Format(handles,Directory)
     
 % function for Assign experimental protein mass to Protein Mass field upon browsing for peaklist file
 function Set_ProteinMass_Field (handles,path)
-    Imported_Data =  importdata(path);
+
+    Imported_Data =  importdata(F_DATA);
     Expermintal_Protein_Mass = Imported_Data(1,1);
     set(handles.edit_ProteinMass,'String',Expermintal_Protein_Mass);
     set(handles.edit_ProteinMass,'ForegroundColor', [0 0 0]);
