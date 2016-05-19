@@ -1310,7 +1310,7 @@ function pushbutton_Next_Callback(hObject, eventdata, handles)
     
 toolbox=pwd;
  tool=strsplit(toolbox,'\');
- if(strcmp('Toolbox',tool(length(tool))))
+ if(strcmp('ToolBox',tool(length(tool))))
     setappdata(0,'initial_path',pwd);
     if((~isempty(get(handles.edit_ProjectTitle,'String')) && (~strcmp(get(handles.edit_ProjectTitle,'String'),'Enter the Project Title'))))
     
