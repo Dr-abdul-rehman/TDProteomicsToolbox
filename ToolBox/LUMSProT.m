@@ -33,7 +33,7 @@ function varargout = LUMSProT(varargin)
 
 % Edit the above text_ProteinMassUnit to modify the response to menu_Help LUMSProT
 
-% Last Modified by GUIDE v2.5 24-Mar-2016 22:49:05
+% Last Modified by GUIDE v2.5 24-May-2016 13:32:35
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -2305,3 +2305,24 @@ function Save_ClickedCallback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
   toolbarbutton_SaveCurrentParametersSettings_ClickedCallback(hObject, eventdata, handles);
+
+
+% --- Executes on button press in pushbutton101.
+function pushbutton101_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton101 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton_OtherModification.
+function pushbutton_OtherModification_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_OtherModification (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+ addpath(strcat(pwd,'\OtherModifications'));
+   
+ LUMSProT_OtherModifications;
+    rmpath(strcat(pwd,'\OtherModifications'));
+
+
+
