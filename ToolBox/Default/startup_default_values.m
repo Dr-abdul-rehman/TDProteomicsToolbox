@@ -45,7 +45,8 @@ set(jPeptide, 'FocusLostCallback', @(h,e)fillField(handles.edit_Peptide,'0.5'));
 jPTM = findjobj(handles.edit_PTM);
 set(jPTM, 'FocusGainedCallback', @(h,e)emptyField(handles.edit_PTM,'0.5'));
 set(jPTM, 'FocusLostCallback', @(h,e)fillField(handles.edit_PTM,'0.5'));
-
+setappdata(0,'Othermodification_Cysteine','');
+setappdata(0,'Othermodification_Methionine','');
 % Tuned Protein Mol Weight
 jPTM = findjobj(handles.edit_TunedMass);
 set(jPTM, 'FocusGainedCallback', @(h,e)emptyField(handles.edit_TunedMass,'0.0'));

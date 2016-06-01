@@ -90,7 +90,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-setappdata(0,'Othermodification_Cysteine',get(handles.uibuttongroup_Cysteine,'SelectedObject'));% to get user defined chemical modifications on cysteine residue
-setappdata(0,'Othermodification_Methionine',get(handles.uibuttongroup_Methionine,'SelectedObject'));% to get user defined chemical modifications on methionine residue
+C_Object=get(handles.uibuttongroup_Cysteine,'SelectedObject');
+M_Object=get(handles.uibuttongroup_Cysteine,'SelectedObject');
+
+setappdata(0,'Othermodification_Cysteine',get(C_Object,'Tag'));% to get user defined chemical modifications on cysteine residue
+setappdata(0,'Othermodification_Methionine',get(M_Object,'Tag'));% to get user defined chemical modifications on methionine residue
 close(LUMSProT_OtherModifications);
-rmpath(strcat(pwd,'\OtherModifications'));
+%rmpath(strcat(pwd,'\OtherModifications'));

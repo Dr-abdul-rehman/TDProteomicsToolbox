@@ -10,12 +10,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function dblMWAA = GetMWofAA( strAminoAcid ) 
 %function reading the letter code of a specific amino acid and returing back its MW
-    
+C_M=getappdata(0,'Othermodification_Cysteine');% to get user defined chemical modifications on cysteine residue
+M_M=getappdata(0,'Othermodification_Methionine');% to get user defined chemical modifications on methionine residue
+  
+
+
     dblMWAA = 0; %initialize MW variable
     MW = Monoisotopic_weight;
     switch(strAminoAcid)
         case 'M'                %If AA is  Methionine return its MW
-        dblMWAA = MW{14,1}{3} ;
+           if strcmp(M_M,'MSO') % for  modified Cysteine 
+                 dblMWAA=147.0354;
+            elseif strcmp(M_M,'M_S')
+                dblMWAA=32.00;
+           else
+               dblMWAA = MW{14,1}{3} ;
+           end
         case 'Q'                %If AA is  Glutamine return its MW
         dblMWAA = MW{11,1}{3};
         case 'A'                %If AA is Alanine return its MW
@@ -27,7 +37,17 @@ function dblMWAA = GetMWofAA( strAminoAcid )
         case 'D'                %If AA is  Aspartic Acid return its MW
         dblMWAA = MW{10,1}{3};
         case'C'                %If AA is Cysteine return its MW
-        dblMWAA = MW{7,1}{3};
+             if strcmp(C_M,'Cys_CAM') % for  modified Cysteine 
+                 dblMWAA=160.03065;
+            elseif strcmp(C_M,'Cys_CM')
+                dblMWAA=161.01466;
+            elseif strcmp(C_M,'Cys_PE')
+                dblMWAA=208.067039;
+                elseif strcmp(C_M,'Cys_PAM')
+                 dblMWAA=174.04631;
+             else
+                dblMWAA = MW{7,1}{3};
+             end
         case 'E'               %If AA is  Glutamic acid return its MW
         dblMWAA = MW{13,1}{3};
         case 'G'               %If AA is Glycine its MW

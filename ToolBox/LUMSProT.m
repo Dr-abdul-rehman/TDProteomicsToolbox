@@ -1308,6 +1308,7 @@ function pushbutton_Next_Callback(hObject, eventdata, handles)
 
     % Globally accessed Variables
     
+    
 toolbox=pwd;
  tool=strsplit(toolbox,'\');
  if(strcmp('ToolBox',tool(length(tool))))
