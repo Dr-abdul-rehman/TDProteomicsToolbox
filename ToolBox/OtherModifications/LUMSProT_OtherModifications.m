@@ -91,9 +91,19 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 C_Object=get(handles.uibuttongroup_Cysteine,'SelectedObject');
-M_Object=get(handles.uibuttongroup_Cysteine,'SelectedObject');
+M_Object=get(handles.uibuttongroup_Methionine,'SelectedObject');
 
-setappdata(0,'Othermodification_Cysteine',get(C_Object,'Tag'));% to get user defined chemical modifications on cysteine residue
-setappdata(0,'Othermodification_Methionine',get(M_Object,'Tag'));% to get user defined chemical modifications on methionine residue
+
+if strcmp('radiobutton_UNC',get(C_Object,'Tag'))
+    setappdata(0,'Othermodification_Cysteine','');
+else
+   setappdata(0,'Othermodification_Cysteine',get(C_Object,'Tag'));% to get user defined chemical modifications on cysteine residue 
+end
+if strcmp('radiobutton_UNM',get(M_Object,'Tag'))
+    setappdata(0,'Othermodification_Methionine','');
+else
+     setappdata(0,'Othermodification_Methionine',get(M_Object,'Tag'));% to get user defined chemical modifications on methionine residue
+end
+
 close(LUMSProT_OtherModifications);
 %rmpath(strcat(pwd,'\OtherModifications'));

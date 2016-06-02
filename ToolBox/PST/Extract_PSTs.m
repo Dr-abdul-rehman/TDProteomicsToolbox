@@ -15,11 +15,27 @@ function Ladders_List =  Extract_PSTs(Peak_List, User_max_TagLength_Threshold,Us
 Hop_Info={} ;
 Ladder_Index = 00; %index ladder
 User_Hop_Threshold = User_Hop_Threshold/17;
+Num_AA=20; % 20 standard amino acids
+ Fixed_Modifications = getappdata(0','Fixed_Modifications'); % Fixed Modifications
+Variable_Modifications = getappdata(0,'Variable_Modifications'); % Variable Modifications
+Othermodification_Cysteine=getappdata(0,'Othermodification_Cysteine');% to get user defined chemical modifications on cysteine residue
+Othermodification_Methionine=getappdata(0,'Othermodification_Methionine');% to get user defined chemical modifications on methionine residue
+ 
+ if ~isempty(Fixed_Modifications)||~isempty(Variable_Modifications) % if PTM is selected modified AA are also identified
+       Num_AA=33;
+ end
+ 
+ if ~isempty(Othermodification_Cysteine)||~isempty(Othermodification_Methionine) % if user defined chemical modifications are seleced
+       Num_AA=39;
+ end
+ 
+ 
+
 for Peak_Index = 1:(size(Peak_List,1)-1) % Hop_Index
     for Hop_Index = (Peak_Index+1) : size(Peak_List,1)
         % Molecular weight difference between two peaks
         Peaks_MW_Difference = Peak_List(Hop_Index) - Peak_List(Peak_Index);
-        for AminoAcid_Index = 1:33 % need to change
+        for AminoAcid_Index = 1:Num_AA % number itration increase from 20 to 39 :20 unmodified and 33 for PTM and 39 if other modification are selected
             Error = Peaks_MW_Difference - AA_monoisotopicMass{AminoAcid_Index}{3};
             if abs ( Error)  <= User_Hop_Threshold
                 
