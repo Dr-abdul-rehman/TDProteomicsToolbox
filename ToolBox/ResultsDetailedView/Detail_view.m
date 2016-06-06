@@ -77,18 +77,19 @@ function varargout = Detail_view_OutputFcn(hObject, eventdata, handles)
 %%
 %%varibales contained data to be displayed
 Tags_Ladder=getappdata(0,'Tags_Ladder');
-Matches=getappdata(0,'Matches');
+%Matches=getappdata(0,'Matches');
+data=getappdata(0,'data');
 index=getappdata(0,'Rank');
-Protein_Sequence= Matches{index}.Sequence;
+Protein_Sequence=data{index,5};
 len_pro=length(Protein_Sequence)-1;
 setappdata(0,'len',len_pro);
-Protein_Name=Matches{index}.Name;
-Protein_ID=Matches{index}.Id;
-Protein_Rank=Matches{index}.rank;
+Protein_Name=data{index,1};
+Protein_ID=data{index,2};
+Protein_Rank=index;
 AminoAcid_Matches= ['/ ',num2str(len_pro)];
 matche_count=0;
-Protein_Score=Matches{index}.Final_Score;
-Whole_Protein_Mass=Matches{index}.MolW;
+Protein_Score=data{index,4};
+Whole_Protein_Mass=data{index,3};
 %%
 Symbols_Modifications=[{'\varpi'},{texlabel('omega')},{texlabel('psi')},{texlabel('alpha')},{'\Theta'},{'\otimes'},{'\oplus'},{'\oslash'},{'\nabla'},{texlabel('Delta')},{'\clubsuit'},{'\heartsuit'},{'\spadesuit'},{'\diamondsuit'}];
 Name_Modifications=[{'Phos_Y'},{'Phos_T'},{'Phos_S'},{'Amid_F'},{'Acet_A'},{'Acet_K'},{'Acet_S'},{'Acet_R'},{'Meth_R'},{'Meth_K'},{'N-li_N'},{'O-li_S'},{'O-li_T'},{'Hydr_P'}];
@@ -97,15 +98,15 @@ X_Axis_Position=0.6;
 Y_Axis_Firstline=0.3;
 Y_Axis_Secondline=-.4;
 
-Display_Protein_Name=['>                     ',Protein_Name,'                                                      ',Protein_ID];
-Display_Protein_Nameb=['Prot Name:                                                                                                           ID:  '];
+Display_Protein_Name=['>Prot Name:  ',Protein_Name,'                                                      ID: ',Protein_ID];
+Display_Protein_Nameb=['                                                                                                         ID:  '];
 
 format_Display_Protein_Name=text(X_Axis_Position-.1,Y_Axis_Firstline-0,Display_Protein_Name);
-format_Protein_ID=text(X_Axis_Position+.4,Y_Axis_Firstline-0,Display_Protein_Nameb);
+%format_Protein_ID=text(X_Axis_Position+.4,Y_Axis_Firstline-0,Display_Protein_Nameb);
 set(format_Display_Protein_Name,'FontSize',10);
-set(format_Protein_ID,'FontSize',10);
-set(format_Protein_ID,'FontWeight','bold');
-set(format_Protein_ID,'color','b');
+%set(format_Protein_ID,'FontSize',10);
+set(format_Display_Protein_Name,'FontWeight','bold');
+set(format_Display_Protein_Name,'color','b');
 second_line=['  Mass:                          Score:                                        Rank:                                       Matches:',];
 second_line2=['>             ',num2str(Whole_Protein_Mass) ,'                            ',num2str(Protein_Score),'                                 ',num2str(Protein_Rank),'                                                       ',AminoAcid_Matches];
 format_secondline=text(X_Axis_Position,Y_Axis_Secondline-0,second_line);     
@@ -160,30 +161,32 @@ for len=1:len_pro
     set(h2,'FontSize',20);
     set(h3,'Rotation',90);
     set(h3,'FontSize',7.5);
-    
+    % protein_data={Name,ID,num2str(MolW),num2str(Score),Sequence,PTM_score,PTM_name,consensus_window,EST_Score,PTM_seq_idx,PTM_site,MWScore,...
+       % Matches_Score,LeftIons,RightIons}   
   %:::::::::::::::::::::::::add modification in sequence::::::
-    if (Matches{index}.PTM_seq_idx+1)  
-        if (length(Matches{index}.PTM_seq_idx)==1)
-            name_mod=strcat(Matches{index}.PTM_name,'_', Matches{index}.PTM_site);
+    if (data{index,10}+1)  
+        if (length(data{index,10}==1))
+            %(length(Matches{index}.PTM_seq_idx)==1)
+            name_mod=strcat(data{index,7},'_', data{index,11});
             for bi=1:14
                 if(strcmp(Name_Modifications(bi),name_mod))
                     id_sym=bi;
                 end
             end
-            if(Matches{index}.PTM_seq_idx==len)
+            if(data{index,10}==len)
                 k=text((X_Axis_Position_vertical_Line+x_axis1),((y1-y_axis1)+2.5), Symbols_Modifications(id_sym));
                 set(k,'FontSize',14);
                 set(k,'color','r');
             end
         else
-        for li=1:length(Matches{index}.PTM_seq_idx) 
-         name_mod=strcat(Matches{index}.PTM_name(li,1:4),'_', Matches{index}.PTM_site);
+        for li=1:length(data{index,10}) 
+         name_mod=strcat(data{index,10}(li,1:4),'_', data{index,11});
              for bi=1:14
                 if(strcmp(Name_Modifications(bi),name_mod(li,1:6)))
                      id_sym=bi;
                  end
              end
-           if(Matches{index}.PTM_seq_idx(li)==len)
+           if(data{index,10}(li)==len)
                 k=text((X_Axis_Position_vertical_Line+x_axis1-.2),((y1-y_axis1)+1.3), Symbols_Modifications(id_sym));
                 set(k,'FontSize',10);
                 set(k,'color','r');
@@ -214,7 +217,7 @@ a=1-b;
 pos=get(handles.axes1,'Position');
 Matches=getappdata(0,'Matches');
 index=getappdata(0,'Rank');
-Protein_Sequence= Matches{index}.Sequence;
+Protein_Sequence= data{index,5};
 len_pro=length(Protein_Sequence)-1;
 condition=ceil(len_pro/100);
 % display protein sequence

@@ -32,7 +32,7 @@ function varargout = Result(varargin)
 
 % Edit the above text to modify the response to help untitled1
 
-% Last Modified by GUIDE v2.5 21-Mar-2016 15:44:56
+% Last Modified by GUIDE v2.5 06-Jun-2016 12:37:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,43 +78,66 @@ function varargout = untitled1_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
- Matches=getappdata(0,'Matches');
- 
+Matches=getappdata(0,'Matches');
  row={};
  output=getappdata(0,'Proteins_Output');
  if(numel(Matches)<str2num(output))
-     num_oputput=numel(Matches);
+     num_output=numel(Matches);
  else
-     num_oputput=str2num(output);
-end
+     num_output=str2num(output);
+ end
+
  
-for z = 1:num_oputput
-    Name=Matches{z}.Name;
+ for z=1:numel(Matches)
+     % get values from structure in which result are stored 
+   Name=Matches{z}.Name;
     ID=Matches{z}.Id;
-    Score=Matches{z}.Final_Score;
-    MolW=Matches{z}.MolW;
-     row=cat(2,row,num2str(z));
-     set(handles.uitable2,'RowName',row);
+    Score=Matches{z}.Final_Score;% 
+    MolW=Matches{z}.MolW;    
+    PTM_score=Matches{z}.PTM_score;
+    PTM_name=Matches{z}.PTM_name;
+    consensus_window=Matches{z}.consensus_window;
+    Sequence=Matches{z}.Sequence;
+    EST_Score=Matches{z}.EST_Score;
+    PTM_seq_idx=Matches{z}.PTM_seq_idx;
+    PTM_site=Matches{z}. PTM_site;
+    MWScore=Matches{z}. MWScore;
+    Matches_Score=Matches{z}.Matches_Score;
+    LeftIons=Matches{z}.LeftIons;
+    RightIons=Matches{z}.RightIons;
+    % store in a cell array 
+
+     if(z==1)     
+        data={Name,ID,num2str(MolW),num2str(Score),Sequence,PTM_score,PTM_name,consensus_window,EST_Score,PTM_seq_idx,PTM_site,MWScore,...
+        Matches_Score,LeftIons,RightIons}
+     else
+          protein_data={Name,ID,num2str(MolW),num2str(Score),Sequence,PTM_score,PTM_name,consensus_window,EST_Score,PTM_seq_idx,PTM_site,MWScore,...
+        Matches_Score,LeftIons,RightIons}
+         data = cat(1,data,protein_data);
+     end
+ end
+ 
+ data=sortrows(data,-4); 
+setappdata(0,'data',data);
+ 
+for z = 1:num_output
+    Name=data{z,1};
+    ID=data{z,2};
+    Score=data{z,4};
+    MolW=data{z,3};  
+    row=cat(2,row,num2str(z));
+    set(handles.uitable2,'RowName',row);
      if(z==1)     
      protein_data= {Name,ID,num2str(MolW),num2str(Score),'...view...'};
      set(handles.uitable2,'data',protein_data);
      else
-     data=get(handles.uitable2,'Data');
+     data_1=get(handles.uitable2,'Data');
      protein_data= {Name,ID,num2str(MolW),num2str(Score),'...view...'};
-     newRowdata = cat(1,data,protein_data);
+     newRowdata = cat(1,data_1,protein_data);
      set(handles.uitable2,'data',newRowdata);
      end
    
 end
-   data=get(handles.uitable2,'Data');
-   data=sortrows(data,-4); 
-
-    set(handles.uitable2,'data',data);
-    entry=size(data);
-    data=get(handles.uitable2,'Data');
-    X=460;
-    Y=240;
-    c=size(data);
  
    
 varargout{1} = handles.output;
@@ -130,10 +153,9 @@ function uitable2_CellSelectionCallback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
    a=eventdata.Indices;
    if a(2)==5
-       Matches=getappdata(0,'Matches');
+       data=getappdata(0,'data');
+      % Matches=getappdata(0,'Matches');
         Rank=a(1)
-        Matches{Rank}.rank=Rank;
-        setappdata(0,'Matches',Matches);
         setappdata(0,'Rank',Rank);
         try
         addpath(strcat(pwd,'/ResultsDetailedView'))
@@ -197,3 +219,15 @@ close(handles.Figure_Result);
                     Result;
                 
                 end  
+
+
+% --- Executes when entered data in editable cell(s) in uitable2.
+function uitable2_CellEditCallback(hObject, eventdata, handles)
+% hObject    handle to uitable2 (see GCBO)
+% eventdata  structure with the following fields (see MATLAB.UI.CONTROL.TABLE)
+%	Indices: row and column indices of the cell(s) edited
+%	PreviousData: previous data for the cell(s) edited
+%	EditData: string(s) entered by the user
+%	NewData: EditData or its converted form set on the Data property. Empty if Data was not changed
+%	Error: error string when failed to convert EditData to appropriate value for Data
+% handles    structure with handles and user data (see GUIDATA)
