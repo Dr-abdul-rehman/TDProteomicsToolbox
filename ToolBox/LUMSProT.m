@@ -947,6 +947,11 @@ function toolbarbutton_LoadDefaultParametersSettings_ClickedCallback(hObject, ev
      'Methylation_K';'N_linked_glycosylation_N';'O_linked_glycosylation_S';'O_linked_glycosylation_T'};
     set(handles.listbox_Modifications,'String',mod); % clear selection
     set(handles.checkbox_ProteinMass,'Value',1);
+    
+    % for setting other modifications NON
+     setappdata(0,'Othermodification_Methionine','');
+      setappdata(0,'Othermodification_Cysteine','');
+      
     try
         handles.Load_Default_file = 1; % To handle default.settings and Project_Title.settings files (Saved by the user)
         Parameters_File = fopen(fullfile(strcat(pwd,'\Settings\default.parameters'))); % Read default.parameters file

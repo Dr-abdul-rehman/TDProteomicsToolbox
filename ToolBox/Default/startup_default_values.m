@@ -51,6 +51,9 @@ setappdata(0,'Othermodification_Methionine','');
 jPTM = findjobj(handles.edit_TunedMass);
 set(jPTM, 'FocusGainedCallback', @(h,e)emptyField(handles.edit_TunedMass,'0.0'));
 set(jPTM, 'FocusLostCallback', @(h,e)fillField(handles.edit_TunedMass,'0.0'));
+setappdata(0,'Othermodification_Cysteine','');
+ setappdata(0,'Othermodification_Methionine','');
+
 
 
 
